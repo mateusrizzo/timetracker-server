@@ -15,10 +15,6 @@ export class SessionMigration1602703179031 implements MigrationInterface {
                         default: 'uuid_generate_v4()'
                     },
                     {
-                        name: 'user_id',
-                        type: 'uuid'
-                    },
-                    {
                         name: 'project_id',
                         type: 'uuid'
                     },
@@ -35,14 +31,6 @@ export class SessionMigration1602703179031 implements MigrationInterface {
             })
         );
         await queryRunner.createForeignKey('sessions', new TableForeignKey({
-            name: 'SessionUser',
-            columnNames: ['user_id'],
-            referencedColumnNames: ['id'],
-            referencedTableName: 'users',
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE'
-        }));
-        await queryRunner.createForeignKey('sessions', new TableForeignKey({
             name: 'SessionProject',
             columnNames: ['project_id'],
             referencedColumnNames: ['id'],
@@ -53,7 +41,6 @@ export class SessionMigration1602703179031 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('sessions', 'SessionUser');
         await queryRunner.dropForeignKey('sessions', 'SessionProject');
         await queryRunner.dropTable('sessions');
     }
