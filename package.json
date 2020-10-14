@@ -1,0 +1,23 @@
+{
+   "name": "timetracker",
+   "version": "1.0.0",
+   "description": "backend for a timetracking and productivity application",
+   "main": "index.js",
+   "repository": "https://github.com/mateusrizzo/timetracker-server.git",
+   "author": "Mateus Rizzo",
+   "license": "MIT",
+   "private": false,
+   "devDependencies": {
+      "@types/node": "^8.0.29",
+      "ts-node": "3.3.0",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "pg": "^7.3.0",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "0.2.28"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts"
+   }
+}
