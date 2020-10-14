@@ -24,10 +24,11 @@ export class SessionMigration1602703179031 implements MigrationInterface {
                     },
                     {
                         name: 'date',
-                        type: 'timestamp with time zone'
+                        type: 'timestamp with time zone',
+                        default: 'now()'
                     }, 
                     {
-                        name: 'date',
+                        name: 'time',
                         type: 'date'
                     }
                 ]
