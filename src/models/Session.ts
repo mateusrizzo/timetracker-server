@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, Timestamp} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne} from 'typeorm';
 import Project from './Project';
 
 
