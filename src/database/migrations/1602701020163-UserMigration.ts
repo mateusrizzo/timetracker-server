@@ -19,6 +19,10 @@ export class UserMigration1602701020163 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
+                        name: 'email',
+                        type: 'varchar'
+                    },
+                    {
                         name: 'password',
                         type: 'varchar',
                     },
