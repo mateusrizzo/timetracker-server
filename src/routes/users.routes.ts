@@ -29,6 +29,8 @@ usersRouter.patch('/', testAuthentication, async (request, response) => {
         password
     });
 
+    delete user.password;
+
     return response.json(user);
 });
 
