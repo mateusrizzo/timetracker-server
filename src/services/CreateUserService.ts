@@ -19,7 +19,7 @@ export default class CreateUserService {
         });
 
         if (checkIfUserExists) {
-            throw new Error('User already exists');
+            throw new Error('Email already exists');
         }
 
         const cryptoPassword = await hash(password, 10);
