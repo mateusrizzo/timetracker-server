@@ -3,6 +3,7 @@ import {getRepository} from 'typeorm';
 import User from '../models/User';
 
 import AppError from '../errors/AppError';
+import { hash } from 'bcryptjs';
 
 interface Request {
     user_id: string;
@@ -22,11 +23,22 @@ export default class UpdateUserService {
             throw new AppError('User are not authenticated', 401);
         }
 
+        if(!email) {
+            email = user.email;
+        }
+        if(!name) {
+            name = user.name;
+        }
+        if(!password) {
+            password = user.password;
+        } else {
+            password = await hash(password, 10);
+        }
+
         const updatedInfo = {
             name: name,
             email: email,
             password: password,
-
         }
 
         await usersRepository.update(user_id, updatedInfo);
