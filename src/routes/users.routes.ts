@@ -2,6 +2,7 @@ import {Router} from 'express';
 
 import CreateUserService from '../services/CreateUserService';
 import UpdateUserService from '../services/UpdateUserService';
+import DeleteUserService from '../services/DeleteUserService';
 import testAuthentication from '../middleware/testAuthentication';
 
 const usersRouter = Router();
@@ -33,6 +34,15 @@ usersRouter.patch('/', testAuthentication, async (request, response) => {
 
     return response.json(user);
 });
+
+usersRouter.delete('/', testAuthentication, async (request, response) => {
+    
+    const deleteUserInfo = new DeleteUserService();
+
+    await deleteUserInfo.execute({user_id: request.user.id});
+
+    return response.status(204).send();
+})
 
 
 
