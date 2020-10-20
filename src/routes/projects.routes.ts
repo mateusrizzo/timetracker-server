@@ -9,10 +9,14 @@ const projectsRoutes = Router();
 projectsRoutes.post('/', testAuthentication, async (request, response) => {
 
     const {name} = request.body;
+    const user_id = request.user.id;
 
-    const createProjectService = new CreateProjectService();
+    const createProject = new CreateProjectService();
 
-    const project = createProjectService.execute(name);
+    const project = await createProject.execute({
+        name,
+        user_id
+    });
 
     return response.json(project);
 
