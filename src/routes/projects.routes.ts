@@ -5,6 +5,7 @@ import testAuthentication from '../middleware/testAuthentication';
 import ProjectsRepository from '../repositories/ProjectsRepository';
 
 import CreateProjectService from '../services/CreateProjectService';
+import UpdateProjectService from '../services/UpdateProjectService';
 
 const projectsRoutes = Router();
 
@@ -31,6 +32,21 @@ projectsRoutes.post('/', testAuthentication, async (request, response) => {
 
     return response.json(project);
 
+});
+
+projectsRoutes.patch('/:id', testAuthentication, async (request, response) => {
+    const {name} = request.body;
+    const {id} = request.params; 
+
+    const updateProject = new UpdateProjectService();
+
+    const project = await updateProject.execute({
+        name,
+        id
+    });
+
+    return response.json(project);
+    
 })
 
 export default projectsRoutes;
