@@ -1,8 +1,7 @@
 import {Router} from 'express';
-import {getCustomRepository, getRepository} from 'typeorm';
+import {getCustomRepository} from 'typeorm';
 
 import testAuthentication from '../middleware/testAuthentication';
-import Project from '../models/Project';
 import ProjectsRepository from '../repositories/ProjectsRepository';
 
 import CreateProjectService from '../services/CreateProjectService';
@@ -10,8 +9,8 @@ import CreateProjectService from '../services/CreateProjectService';
 const projectsRoutes = Router();
 
 projectsRoutes.get('/', testAuthentication, async (request, response) => {
-    
     const user_id = request.user.id;
+
     const projectsRepository = getCustomRepository(ProjectsRepository);
     const projects = await projectsRepository.findByUser(user_id);
 
@@ -20,7 +19,6 @@ projectsRoutes.get('/', testAuthentication, async (request, response) => {
 });
 
 projectsRoutes.post('/', testAuthentication, async (request, response) => {
-
     const {name} = request.body;
     const user_id = request.user.id;
 
