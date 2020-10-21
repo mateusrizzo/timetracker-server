@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getRepository} from 'typeorm';
+import {getCustomRepository, getRepository} from 'typeorm';
 
 import testAuthentication from '../middleware/testAuthentication';
 import Project from '../models/Project';
@@ -10,10 +10,11 @@ const projectsRoutes = Router();
 
 projectsRoutes.get('/', testAuthentication, async (request, response) => {
     const projectsRepository = getRepository(Project);
-    const projects = await projectsRepository.find();
+    const projects = await projectsRepository.find({
+        where: {user_id: request.user.id}
+    });
 
     return response.json(projects);
-
 
 });
 
