@@ -1,10 +1,21 @@
 import {Router} from 'express';
+import {getRepository} from 'typeorm';
 
 import testAuthentication from '../middleware/testAuthentication';
+import Project from '../models/Project';
 
 import CreateProjectService from '../services/CreateProjectService';
 
 const projectsRoutes = Router();
+
+projectsRoutes.get('/', testAuthentication, async (request, response) => {
+    const projectsRepository = getRepository(Project);
+    const projects = await projectsRepository.find();
+
+    return response.json(projects);
+
+
+});
 
 projectsRoutes.post('/', testAuthentication, async (request, response) => {
 
