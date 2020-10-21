@@ -40,7 +40,7 @@ projectsRoutes.patch('/:id', testAuthentication, async (request, response) => {
 
     const updateProject = new UpdateProjectService();
 
-    const project = updateProject.execute({
+    const project = await updateProject.execute({
         name,
         id
     });
