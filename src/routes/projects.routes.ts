@@ -3,16 +3,17 @@ import {getCustomRepository, getRepository} from 'typeorm';
 
 import testAuthentication from '../middleware/testAuthentication';
 import Project from '../models/Project';
+import ProjectsRepository from '../repositories/ProjectsRepository';
 
 import CreateProjectService from '../services/CreateProjectService';
 
 const projectsRoutes = Router();
 
 projectsRoutes.get('/', testAuthentication, async (request, response) => {
-    const projectsRepository = getRepository(Project);
-    const projects = await projectsRepository.find({
-        where: {user_id: request.user.id}
-    });
+    
+    const user_id = request.user.id;
+    const projectsRepository = getCustomRepository(ProjectsRepository);
+    const projects = await projectsRepository.findByUser(user_id);
 
     return response.json(projects);
 

@@ -1,8 +1,8 @@
-import {getRepository} from 'typeorm';
+import {getRepository, getCustomRepository} from 'typeorm';
 import AppError from '../errors/AppError';
 
 import Project from '../models/Project';
-import User from '../models/User';
+import ProjectsRepository from '../repositories/ProjectsRepository';
 
 
 interface Request {
@@ -12,7 +12,7 @@ interface Request {
 
 export default class CreateProjectService {
     public async execute({name, user_id}: Request): Promise<Project> {
-        const projectsRepository = getRepository(Project);
+        const projectsRepository = getCustomRepository(ProjectsRepository);
 
         const project = projectsRepository.create({
             name,
