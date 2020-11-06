@@ -24,8 +24,12 @@ export class SessionMigration1602703179031 implements MigrationInterface {
                         default: 'now()'
                     }, 
                     {
-                        name: 'time',
-                        type: 'float'
+                        name: 'minutes',
+                        type: 'integer'
+                    },
+                    {
+                        name: 'seconds',
+                        type: 'integer'
                     }
                 ]
             })
