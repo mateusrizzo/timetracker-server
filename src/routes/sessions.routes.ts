@@ -1,6 +1,7 @@
 import {Router} from 'express';
 
 import testAuthentication from '../middleware/testAuthentication';
+import SessionsRepository from '../repositories/SessionsRepository';
 
 import CreateSessionService from '../services/CreateSessionService';
 
