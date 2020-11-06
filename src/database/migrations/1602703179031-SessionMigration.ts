@@ -25,7 +25,7 @@ export class SessionMigration1602703179031 implements MigrationInterface {
                     }, 
                     {
                         name: 'time',
-                        type: 'date'
+                        type: 'float'
                     }
                 ]
             })
@@ -34,7 +34,7 @@ export class SessionMigration1602703179031 implements MigrationInterface {
             name: 'SessionProject',
             columnNames: ['project_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'users',
+            referencedTableName: 'projects',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE'
         }));

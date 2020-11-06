@@ -18,5 +18,5 @@ export default class Session{
     date: Date
 
     @Column()
-    time: Date
+    time: Number
 }
