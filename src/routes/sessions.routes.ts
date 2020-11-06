@@ -5,6 +5,7 @@ import testAuthentication from '../middleware/testAuthentication';
 import SessionsRepository from '../repositories/SessionsRepository';
 
 import CreateSessionService from '../services/CreateSessionService';
+import DeleteSessionService from '../services/DeleteSessionService';
 
 const sessionsRouter = Router();
 
@@ -31,5 +32,15 @@ sessionsRouter.post('/:id', testAuthentication, async(request, response) => {
 
     return response.json(session);
 });
+
+sessionsRouter.delete('/:id', testAuthentication, async(request, response) => {
+    const {id} = request.params;
+
+    const deleteSession = new DeleteSessionService();
+
+    await deleteSession.execute({session_id: id});
+
+    response.status(204).send();
+})
 
 export default sessionsRouter;
