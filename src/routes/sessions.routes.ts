@@ -12,7 +12,7 @@ sessionsRouter.get('/:id', testAuthentication, async(request, response) => {
     const {id} = request.params;
 
     const sessionsRepository = getCustomRepository(SessionsRepository);
-    const sessions = await sessionsRepository.findByProject({project_id: id});
+    const sessions = await sessionsRepository.findByProject(id);
 
     return response.json(sessions);
 });
