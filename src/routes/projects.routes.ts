@@ -5,6 +5,7 @@ import testAuthentication from '../middleware/testAuthentication';
 import ProjectsRepository from '../repositories/ProjectsRepository';
 
 import CreateProjectService from '../services/CreateProjectService';
+import DeleteProjectService from '../services/DeleteProjectService';
 import UpdateProjectService from '../services/UpdateProjectService';
 
 const projectsRoutes = Router();
@@ -47,6 +48,16 @@ projectsRoutes.patch('/:id', testAuthentication, async (request, response) => {
 
     return response.json(project);
     
+});
+
+projectsRoutes.delete('/:id', testAuthentication, async (request, response) => {
+    const {id} = request.params;
+
+    const deleteProject = new DeleteProjectService();
+
+    await deleteProject.execute({project_id: id});
+
+    response.status(204).send();
 })
 
 export default projectsRoutes;
