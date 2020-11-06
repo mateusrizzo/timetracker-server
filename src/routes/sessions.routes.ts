@@ -38,7 +38,7 @@ sessionsRouter.delete('/:id', testAuthentication, async(request, response) => {
 
     const deleteSession = new DeleteSessionService();
 
-    await deleteSession.execute(id);
+    await deleteSession.execute({session_id: id});
 
     response.status(204).send();
 })

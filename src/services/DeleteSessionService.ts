@@ -5,7 +5,7 @@ import SessionsRepository from '../repositories/SessionsRepository';
 import AppError from '../errors/AppError';
 
 export default class DeleteSessionService {
-    public async execute (session_id: string) {
+    public async execute ({session_id}) {
         const sessionsRepository = getCustomRepository(SessionsRepository);
 
         const sessionForDeletion = await sessionsRepository.findOne(session_id);
