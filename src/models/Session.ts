@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, CreateDateColumn} from 'typeorm';
 import Project from './Project';
 
 
@@ -14,7 +14,7 @@ export default class Session{
     @JoinColumn({name: 'project_id'})
     project: Project
 
-    @Column()
+    @CreateDateColumn()
     date: Date
 
     @Column()
