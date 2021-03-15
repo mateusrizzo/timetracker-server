@@ -1,6 +1,6 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class SessionMigration1602703179031 implements MigrationInterface {
+export default class SessionMigration1602703179031 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -24,28 +24,15 @@ export class SessionMigration1602703179031 implements MigrationInterface {
                         default: 'now()'
                     }, 
                     {
-                        name: 'minutes',
-                        type: 'integer'
-                    },
-                    {
                         name: 'seconds',
                         type: 'integer'
                     }
                 ]
             })
         );
-        await queryRunner.createForeignKey('sessions', new TableForeignKey({
-            name: 'SessionProject',
-            columnNames: ['project_id'],
-            referencedColumnNames: ['id'],
-            referencedTableName: 'projects',
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE'
-        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('sessions', 'SessionProject');
         await queryRunner.dropTable('sessions');
     }
 

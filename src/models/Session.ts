@@ -18,8 +18,5 @@ export default class Session{
     date: Date
 
     @Column()
-    minutes: Number
-
-    @Column()
     seconds: Number
 }
